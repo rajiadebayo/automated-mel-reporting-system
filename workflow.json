@@ -1,0 +1,718 @@
+{
+  "name": "Automated MEL Reporting System",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        288
+      ],
+      "id": "043a7660-e47c-480d-869a-2c1b6a1e9a08",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fb9fa3ce-f608-4178-bf2a-07714b3138e0",
+              "name": "sessionName",
+              "value": "Mental Health & Rights Training",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        288
+      ],
+      "id": "add1a71f-5258-46eb-bc44-50204f07af1b",
+      "name": "Select Training Session"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appsv2JveC3hlHiQo",
+          "mode": "list",
+          "cachedResultName": "VINAA-I",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl9ONC1uvKGTKzUR",
+          "mode": "list",
+          "cachedResultName": "Sessions",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo/tbl9ONC1uvKGTKzUR"
+        },
+        "filterByFormula": "={Training Title} = \"{{ $json.sessionName }}\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        448,
+        288
+      ],
+      "id": "97c3b9ce-9577-4a79-ade9-ea901fb0c954",
+      "name": "Get Session",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "soYLFLqRih1YKM4A",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appsv2JveC3hlHiQo",
+          "mode": "list",
+          "cachedResultName": "VINAA-I",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbleT4CeEeKgkRX0a",
+          "mode": "list",
+          "cachedResultName": "Attendance",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo/tbleT4CeEeKgkRX0a"
+        },
+        "filterByFormula": "={Training} = \"{{ $('Select Training Session').item.json.sessionName }}\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        96
+      ],
+      "id": "25da8e14-af54-4cb5-bfa8-92a5548d9eca",
+      "name": "Get Attendance",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "soYLFLqRih1YKM4A",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appsv2JveC3hlHiQo",
+          "mode": "list",
+          "cachedResultName": "VINAA-I",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl371XPfsP9SZhWt",
+          "mode": "list",
+          "cachedResultName": "Pre-Test Table",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo/tbl371XPfsP9SZhWt"
+        },
+        "filterByFormula": "={Training} = \"{{ $('Select Training Session').item.json.sessionName }}\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        288
+      ],
+      "id": "a33cd313-734c-4ca6-9b96-76e81d24fb8f",
+      "name": "Get Pre-Test",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "soYLFLqRih1YKM4A",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appsv2JveC3hlHiQo",
+          "mode": "list",
+          "cachedResultName": "VINAA-I",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblYnP18upmNEjSeW",
+          "mode": "list",
+          "cachedResultName": "Post-Test Table",
+          "cachedResultUrl": "https://airtable.com/appsv2JveC3hlHiQo/tblYnP18upmNEjSeW"
+        },
+        "filterByFormula": "={Training} = \"{{ $('Select Training Session').item.json.sessionName }}\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        480
+      ],
+      "id": "36a8d477-8610-4055-9e2f-058f0409c047",
+      "name": "Get Post-Test",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "soYLFLqRih1YKM4A",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        896,
+        272
+      ],
+      "id": "5b4ed562-acb5-44b8-911e-45fddc01583b",
+      "name": "Combine All Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pull the merged item (all fields combined into one object)\nconst d = $input.first().json.fields;\n\n// Session comes via Get Session's fields already merged in; but to be safe,\n// reference each source node directly by name:\nconst session = $('Get Session').first().json.fields;\nconst att = $('Get Attendance').first().json.fields;\nconst pre = $('Get Pre-Test').first().json.fields;\nconst post = $('Get Post-Test').first().json.fields;\n\n// Calculations\nconst attendanceRate = att['Total Registered'] > 0\n  ? Math.round((att['Total Present'] / att['Total Registered']) * 1000) / 10\n  : 0;\n\nconst preAvg = pre['Average Score'] || 0;\nconst postAvg = post['Average Score'] || 0;\nconst change = Math.round((postAvg - preAvg) * 100) / 100;\nconst changePct = preAvg > 0 ? Math.round(((postAvg - preAvg) / preAvg) * 1000) / 10 : 0;\nconst knowledgeChange = `${change >= 0 ? '+' : ''}${change} points (${changePct >= 0 ? '+' : ''}${changePct}%)`;\n\nreturn [{\n  json: {\n    trainingTitle: session['Training Title'] || '',\n    trainingDate: session['Date'] || 'Not recorded',\n    trainingLocation: session['Location'] || 'Not recorded',\n    facilitators: session['Facilitator(s)'] || '',\n    topicsDiscussed: session['Topics Discussed'] || '',\n    actionPoints: session['Action Points'] || 'None recorded',\n    comments: session['Comments'] || 'None recorded',\n    recordingLink: session['Recording Link'] || 'Not available',\n    totalRegistered: att['Total Registered'] || 0,\n    totalPresent: att['Total Present'] || 0,\n    male: att['Male'] || 0,\n    female: att['Female'] || 0,\n    attendanceRate: attendanceRate,\n    preTestAvg: preAvg,\n    preTestRespondents: pre['Number of Respondents'] || 0,\n    postTestAvg: postAvg,\n    postTestRespondents: post['Number of Respondents'] || 0,\n    knowledgeChange: knowledgeChange,\n    reportDate: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        288
+      ],
+      "id": "5a177c2f-261d-4179-84aa-0d493f930a98",
+      "name": "Calculate Report Values"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Training data for analysis:\n- Training Title: {{ $json.trainingTitle }}\n- Topics Covered: {{ $json.topicsDiscussed }}\n- Total Registered: {{ $json.totalRegistered }}, Total Present: {{ $json.totalPresent }} (Attendance Rate: {{ $json.attendanceRate }}%)\n- Gender split: {{ $json.male }} male, {{ $json.female }} female\n- Pre-Test Average: {{ $json.preTestAvg }} (n={{ $json.preTestRespondents }})\n- Post-Test Average: {{ $json.postTestAvg }} (n={{ $json.postTestRespondents }})\n- Knowledge Change: {{ $json.knowledgeChange }}\n\nSearch the VINAAA-I Strategic Plan for the strategic objectives and priorities most relevant to these training topics, then write the two sections described in your instructions.",
+        "options": {
+          "systemMessage": "You are a Monitoring, Evaluation and Learning (MEL) analyst at VINAAA-I (Voices in Nigeria Adolescents and Advocacy Initiative), an NGO serving vulnerable communities in Plateau State, Nigeria.\n\nYour task: given training evaluation data, produce TWO sections of a formal training report.\n\nRules:\n1. ALWAYS search the Strategic Plan tool first to find the strategic objectives/pillars relevant to the training topics. Quote or reference the actual strategic language you find.\n2. Be factual. Use ONLY the numbers provided. Never invent data, percentages, or findings.\n3. Small sample sizes (n below 30) must be acknowledged honestly — describe results as \"indicative\" rather than conclusive.\n4. Professional NGO report tone: clear, measured, no hype.\n5. Write in UK English.\n\nOutput EXACTLY this JSON format, nothing else:\n{\n  \"executiveSummary\": \"One paragraph (4-6 sentences): what the training was, who attended, headline knowledge outcome, and one sentence on strategic relevance.\",\n  \"melAnalysis\": \"Two to three paragraphs: (1) interpret the participation and knowledge change data honestly, including limitations; (2) connect the training explicitly to the VINAAA-I strategic objectives you retrieved, naming the specific pillar/objective; (3) one forward-looking implication for programming.\"\n}ou are a helpful assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1376,
+        288
+      ],
+      "id": "036dc8ec-db0d-4060-b5eb-03a08fe64474",
+      "name": "Draft MEL Analysis"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        512
+      ],
+      "id": "cd161d07-fb1b-4811-b9bb-d1033fa530db",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "8FQNUfJSCyrJa3fk",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Searches the VINAAA-I Strategic Plan for strategic objectives, pillars, priorities and language relevant to a given topic. Use this to align training results with the organization's strategy.",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "vinaa-strategic-plan",
+          "mode": "list",
+          "cachedResultName": "vinaa-strategic-plan"
+        },
+        "topK": 5,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        1472,
+        512
+      ],
+      "id": "e97bf592-8c75-44f1-8178-f306f0097a66",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "DSqIYEG77PybATzF",
+          "name": "Pinecone account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1552,
+        720
+      ],
+      "id": "0d342a80-0ac3-441d-bdcb-3559c35af6c1",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "8hiE4fSuD4vsCp8A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the AI's raw text output\nlet raw = $input.first().json.output;\n\n// Strip markdown fences if the model added them\nraw = raw.replace(/```json/g, '').replace(/```/g, '').trim();\n\n// Parse the JSON\nlet ai;\ntry {\n  ai = JSON.parse(raw);\n} catch (e) {\n  // Fallback: if parsing fails, use raw text for both, flag it\n  ai = {\n    executiveSummary: 'PARSE ERROR - review manually: ' + raw.substring(0, 500),\n    melAnalysis: raw\n  };\n}\n\n// Combine AI sections with all the report data from earlier\nconst reportData = $('Calculate Report Values').first().json;\n\nreturn [{\n  json: {\n    ...reportData,\n    // Force all numerics to strings for Google Docs API\n    totalRegistered: String(reportData.totalRegistered),\n    totalPresent: String(reportData.totalPresent),\n    male: String(reportData.male),\n    female: String(reportData.female),\n    attendanceRate: String(reportData.attendanceRate),\n    preTestAvg: String(reportData.preTestAvg),\n    preTestRespondents: String(reportData.preTestRespondents),\n    postTestAvg: String(reportData.postTestAvg),\n    postTestRespondents: String(reportData.postTestRespondents),\n    executiveSummary: ai.executiveSummary,\n    melAnalysis: ai.melAnalysis,\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1840,
+        288
+      ],
+      "id": "33e301b6-c061-46a4-bb26-44aaec9019ee",
+      "name": "Parse AI Output"
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_DOC_TEMPLATE_ID",
+          "mode": "list",
+          "cachedResultName": "MEL Training Report - TEMPLATE",
+          "cachedResultUrl": "https://docs.google.com/document/d/YOUR_GOOGLE_DOC_TEMPLATE_ID/edit?usp=drivesdk"
+        },
+        "name": "=MEL Report - {{ $json.trainingTitle }} - {{ $json.reportDate }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2064,
+        288
+      ],
+      "id": "bc0ff5e6-a91a-40fd-891f-042546defe3c",
+      "name": "Copy Report Template",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "3NjqKUlDAAkPLSJ9",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "replaceAll",
+              "text": "{{trainingTitle}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.trainingTitle }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{trainingDate}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.trainingDate }}{{trainingLocation}}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{trainingLocation}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.trainingLocation }}",
+              "matchCase": "={{ false }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{facilitators}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.facilitators }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{topicsDiscussed}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.topicsDiscussed }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{executiveSummary}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.executiveSummary }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{totalRegistered}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.totalRegistered }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{totalPresent}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.totalPresent }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{male}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.male }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{female}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.female }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{attendanceRate}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.attendanceRate }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{preTestAvg}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.preTestAvg }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{preTestRespondents}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.preTestRespondents }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{postTestAvg}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.postTestAvg }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{postTestRespondents}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.postTestRespondents }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{knowledgeChange}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.knowledgeChange }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{melAnalysis}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.melAnalysis }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{actionPoints}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.actionPoints }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{comments}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.comments }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{recordingLink}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.recordingLink }}"
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{reportDate}}",
+              "replaceText": "={{ $('Parse AI Output').item.json.reportDate }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        2288,
+        288
+      ],
+      "id": "750abce9-a4e7-465f-a8dc-e90624a1eff3",
+      "name": "Fill Report",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "NyByGruJg0e4A2fX",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.documentId }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {}
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2512,
+        288
+      ],
+      "id": "db9a6433-9e6b-43a1-a68e-c5416588e009",
+      "name": "Export PDF",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "3NjqKUlDAAkPLSJ9",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "rajimadebayo@gmail.com",
+        "subject": "=MEL Report: {{ $('Parse AI Output').item.json.trainingTitle }} - {{ $('Parse AI Output').item.json.reportDate }}",
+        "emailType": "text",
+        "message": "=Dear Team,\n\nPlease find attached the MEL training evaluation report for {{ $('Parse AI Output').item.json.trainingTitle }}.\n\nKey highlights:\n- Attendance: {{ $('Parse AI Output').item.json.totalPresent }} of {{ $('Parse AI Output').item.json.totalRegistered }} registered ({{ $('Parse AI Output').item.json.attendanceRate }}%)\n- Knowledge change: {{ $('Parse AI Output').item.json.knowledgeChange }}\n\nFull analysis and strategic alignment details are in the attached report.\n\nBest regards,\nAdebayo Raji\nMEL Officer, VINAAA-I",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2736,
+        288
+      ],
+      "id": "7cd45445-b6bd-49ac-9d32-37542177a4d6",
+      "name": "Email Report",
+      "webhookId": "39a18dc9-55fa-49d7-8b22-681b09411335",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "etJkV1XX5IV5jdqB",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Select Training Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select Training Session": {
+      "main": [
+        [
+          {
+            "node": "Get Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Session": {
+      "main": [
+        [
+          {
+            "node": "Get Attendance",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Pre-Test",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Post-Test",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Attendance": {
+      "main": [
+        [
+          {
+            "node": "Combine All Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Pre-Test": {
+      "main": [
+        [
+          {
+            "node": "Combine All Data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Post-Test": {
+      "main": [
+        [
+          {
+            "node": "Combine All Data",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Combine All Data": {
+      "main": [
+        [
+          {
+            "node": "Calculate Report Values",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Report Values": {
+      "main": [
+        [
+          {
+            "node": "Draft MEL Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Draft MEL Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "Draft MEL Analysis",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft MEL Analysis": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Output": {
+      "main": [
+        [
+          {
+            "node": "Copy Report Template",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy Report Template": {
+      "main": [
+        [
+          {
+            "node": "Fill Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fill Report": {
+      "main": [
+        [
+          {
+            "node": "Export PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export PDF": {
+      "main": [
+        [
+          {
+            "node": "Email Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "7e3007b4-09d2-4044-aab5-b8966c292e58",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0dcfa3caf6c5918aef798253d5369db192fb019aead634a69a85c5c9e7476704"
+  },
+  "nodeGroups": [],
+  "id": "9iAnRUooAyrw6FVK",
+  "tags": []
+}
