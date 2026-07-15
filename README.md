@@ -42,3 +42,17 @@ This repository contains **workflow logic only**. No real participant data, atte
 ## Status
 
 Actively in development. Core pre-test sync is working; post-test sync and report delivery are being finalized.
+
+## How It Works — Output Walkthrough
+
+### 1. Workflow Overview
+![Workflow Overview](screenshots/01-workflow-overview.png)
+
+### 2. Attendance & Pre-Test Sync to Airtable
+![Airtable Sync](screenshots/02-airtable-sync.png)
+
+### 3. AI-Generated Report Output
+![Generated Report](screenshots/03-generated-report.png)
+
+### 4. Delivered via Gmail
+![Gmail Delivery](screenshots/04-gmail-delivery.png)
