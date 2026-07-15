@@ -65,11 +65,11 @@ Actively in development. Core pipeline is working end-to-end: attendance/score s
 ### 2. Attendance & Pre-Test Sync to Airtable
 ![Airtable Sync](screenshots/02-airtable-sync.png)
 
-### 3. AI-Generated Report Output
-![Generated Report](screenshots/03-generated-report.png)
+### 3. Transcription Sub-Workflow
+![Transcription Sub-Workflow](screenshots/03-transcription-subworkflow.png)
 
-### 4. Delivered via Gmail
-![Gmail Delivery](screenshots/04-gmail-delivery.png)
+### 4. AI-Generated Report Output
+![Generated Report](screenshots/04-generated-report.png)
 
-### 5. Transcription Sub-Workflow
-![Transcription Sub-Workflow](screenshots/05-transcription-subworkflow.png)
+### 5. Delivered via Gmail
+![Gmail Delivery](screenshots/05-gmail-delivery.png)
